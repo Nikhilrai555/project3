@@ -7,5 +7,5 @@ const Profile = () => {
     <button onClick={() => navigate('/home2')}>Go Back</button>
     </div>
   )
-}
+} 
 export default Profile

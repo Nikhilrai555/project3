@@ -1,58 +1,56 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { postTradeAsync } from "../features/tradeSlice";
 
 const TakeTrade = () => {
   const navigate = useNavigate();
-  const [trades, setTrades] = useState([]);
-  const [newTrade, setNewTrade] = useState({ticker:'',type:'', description: '',price:'',tp:'',sl:'',strategy:'' });
+  const [newTrade, setNewTrade] = useState({
+    ticker: '',
+    type: '',
+    description: '',
+    price: '',
+    tp: '',
+    sl: '',
+    strategy: ''
+  });
   const dispatch = useDispatch();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (newTrade.ticker.trim() !== '') {
       try {
-       // const response = await axios.post('http://localhost:3001/trades', newTrade);
-        dispatch(postTradeAsync(newTrade));
-        navigate("/home2/feed");
         console.log(newTrade);
-        setTrades([...trades, response.data]);
-        setNewTrade({ticker:'',type:'', description: '',price:'',tp:'',sl:'',strategy:'' }); // Reset input fields
+        dispatch(postTradeAsync(newTrade));
+        setNewTrade({
+          ticker: '',
+          type: '',
+          description: '',
+          price: '',
+          tp: '',
+          sl: '',
+          strategy: ''
+        });
+        navigate("/home2/feed");
       } catch (error) {
         console.error('Error creating trade:', error);
       }
     }
   };
 
-  const fetchTrades = async () => {
-    try {
-      const response = await axios.get('http://localhost:3001/trades');
-      setTrades(response.data);
-    } catch (error) {
-      console.error('Error fetching trades:', error);
-    }
-  };
-
- 
- useEffect(() => {
-    fetchTrades();
-  }, []);
   return (
     <div>
       <p>Trade Form</p>
-      <form action="" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="ticker"
+          placeholder="Ticker"
           value={newTrade.ticker}
           onChange={(e) => setNewTrade({ ...newTrade, ticker: e.target.value })}
         />
         <input
           type="text"
-          placeholder="type"
+          placeholder="Type"
           value={newTrade.type}
           onChange={(e) =>
             setNewTrade({ ...newTrade, type: e.target.value })
@@ -60,31 +58,31 @@ const TakeTrade = () => {
         />
         <input
           type="text"
-          placeholder="description"
+          placeholder="Description"
           value={newTrade.description}
           onChange={(e) => setNewTrade({ ...newTrade, description: e.target.value })}
         />
         <input
           type="text"
-          placeholder="price"
+          placeholder="Price"
           value={newTrade.price}
           onChange={(e) => setNewTrade({ ...newTrade, price: e.target.value })}
         />
         <input
           type="text"
-          placeholder="tp"
+          placeholder="TP"
           value={newTrade.tp}
           onChange={(e) => setNewTrade({ ...newTrade, tp: e.target.value })}
         />
         <input
           type="text"
-          placeholder="sl"
+          placeholder="SL"
           value={newTrade.sl}
           onChange={(e) => setNewTrade({ ...newTrade, sl: e.target.value })}
         />
         <input
           type="text"
-          placeholder="strategy"
+          placeholder="Strategy"
           value={newTrade.strategy}
           onChange={(e) => setNewTrade({ ...newTrade, strategy: e.target.value })}
         />
@@ -92,7 +90,6 @@ const TakeTrade = () => {
       </form>
 
       <h2>Trades</h2>
-     
 
       <button onClick={() => navigate('/home2')}>Go Back</button>
     </div>
