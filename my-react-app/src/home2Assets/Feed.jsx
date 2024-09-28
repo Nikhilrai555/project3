@@ -14,22 +14,28 @@ const Feed = () => {
   const feedTrade = useSelector((state) => state.trade.trades);
   const isLoading = useSelector((state) => state.trade.isLoading);
   const error = useSelector((state) => state.trade.error);
+  console.log(feedTrade);
+
+
 
   return (
     <div>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       <ul>
-        {feedTrade && feedTrade.map((t, index) => (
+      
+          {feedTrade && feedTrade.map((t, index) => (
           <li key={index}>
             <strong>{t.ticker}</strong>
             {t.type && <p>{t.type}</p>}
             {t.description && <p>{t.description}</p>}
-            {t.price && <p>{t.price}</p>}
+           {t.price && <p>{t.price}</p>}
             {t.tp && <p>{t.tp}</p>}
-            {t.sl && <p>{t.sl}</p>}
-            {t.strategy && <p>{t.strategy}</p>}
-          </li>
+           {t.sl && <p>{t.sl}</p>}
+           {t.strategy && <p>{t.strategy}</p>}
+           {t.creator && <p>Created by: {t.creator.name || t.creator.email}</p>}
+
+   </li>
         ))}
       </ul>
       <button onClick={() => navigate('/home2')}>Go Back</button>

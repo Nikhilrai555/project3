@@ -1,11 +1,32 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { postTrade, fetchTrades } from "./api";
+import { fetchTrades } from "./api";
+import axios from "axios";
+
 
 export const postTradeAsync = createAsyncThunk(
   'trades/postTrade',
-  async (tradeData) => {
-    const newTrade = await postTrade(tradeData);
-    return newTrade;
+  async (tradeData, { rejectWithValue }) => {
+    const profile = JSON.parse(localStorage.getItem('profile'));
+    const token = profile.token; // Get the token
+    console.log(token);
+
+    if (!token) {
+      return rejectWithValue('Token missing');
+    }
+
+    try {
+      
+      const response = await axios.post('http://localhost:3001/trades', tradeData, {
+        headers: {
+          'Authorization': `Bearer ${token}`, // Send token in the Authorization header
+        },
+      });
+      console.log(response);
+      return response.data;
+    } catch (err) {
+      console.error(err);
+      return rejectWithValue(err.response?.data || err.message);
+    }
   }
 );
 

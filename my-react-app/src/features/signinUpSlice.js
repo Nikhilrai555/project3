@@ -19,10 +19,7 @@ const signinUpSlice = createSlice({
     error: null,
   },
   reducers: {
-   // auth: (state, action) => {
-     // state.token = action.payload.token;
-     // localStorage.setItem('profile', action.payload);
-   // },  
+
 
     logout: (state) => {
         localStorage.clear()
