@@ -32,7 +32,7 @@ const Feed = () => {
            {t.price && <p>{t.price}</p>}
             {t.tp && <p>{t.tp}</p>}
            {t.sl && <p>{t.sl}</p>}
-           {t.strategy && <p>{t.strategy}</p>}
+           {t.pnl && <p>{t.pnl}</p>}
            {t.creator && <p>Created by: {t.creator.name || t.creator.email}</p>}
 
    </li>

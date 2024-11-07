@@ -82,9 +82,9 @@ const TakeTrade = () => {
         />
         <input
           type="text"
-          placeholder="Strategy"
-          value={newTrade.strategy}
-          onChange={(e) => setNewTrade({ ...newTrade, strategy: e.target.value })}
+          placeholder="pnl"
+          value={newTrade.pnl}
+          onChange={(e) => setNewTrade({ ...newTrade, pnl: e.target.value })}
         />
         <button type="submit">Submit Trade Idea</button>
       </form>
