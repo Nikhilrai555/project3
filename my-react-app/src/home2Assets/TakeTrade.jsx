@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { postTradeAsync } from "../features/tradeSlice";
+import Navbar2 from './Navbar2'
 
 const TakeTrade = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const TakeTrade = () => {
 
   return (
     <div>
+      <Navbar2/>
       <p>Trade Form</p>
       <form onSubmit={handleSubmit}>
         <input

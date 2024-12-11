@@ -8,6 +8,7 @@ import Auth from './home1Assets/Auth'
 import Logout from './home2Assets/Logout'
 import Profile from './home2Assets/Profile'
 import TakeTrade from './home2Assets/TakeTrade'
+import AnyUserProfile from './home2Assets/AnyUserProfile'
 
 
 
@@ -24,6 +25,7 @@ function App() {
       <Route path="/home2/logout" element={<Logout/>}/>
       <Route path="/home2/profile" element={<Profile/>}/>
       <Route path="/home2/takeTrade" element={<TakeTrade/>}/>
+      <Route path="/home2/profile/:id" element={<AnyUserProfile/>}/>
     </Routes>
    </BrowserRouter>
   )

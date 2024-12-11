@@ -34,21 +34,73 @@ const Navbar2 = () => {
   }, [user, intervalId]);
 
   return (
-    <nav>
-      <button onClick={() => navigate('/')}>Back</button>
-      {user ? (
-        <div>
-          <h1>{user?.result?.name?.charAt(0)}</h1>
-          <h1>{user?.result?.name}</h1>
-          <button onClick={logOut}>Logout</button>
-        </div>
-      ) : (
-        <div><button onClick={() => navigate('/auth')}>Login</button></div>
-      )}
-      <button onClick={() => navigate('/home2/leaderboard')}>Leaderboard</button>
-      <button onClick={() => navigate('/home2/feed')}>Feed</button>
-      <button onClick={() => navigate('/home2/profile')}>Profile</button>
-      <button onClick={() => navigate('/home2/takeTrade')}>Take Trade</button>
+    <nav className="bg-black text-white p-4 flex items-center justify-between">
+      {/* Left Section */}
+      <div>
+        <button
+          onClick={() => navigate('/home2')}
+          className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded"
+        >
+          Back
+        </button>
+      </div>
+
+      {/* Middle Section */}
+      <div className="flex items-center space-x-6">
+        {user ? (
+          <div className="flex items-center space-x-4">
+            <div className="bg-gray-700 rounded-full w-8 h-8 flex items-center justify-center">
+              <span className="text-lg font-bold">
+                {user?.result?.name?.charAt(0)}
+              </span>
+            </div>
+            <h1 className="text-lg font-medium">{user?.result?.name}</h1>
+            <button
+              onClick={logOut}
+              className="px-4 py-2 bg-red-600 hover:bg-red-500 rounded"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <div>
+            <button
+              onClick={() => navigate('/auth')}
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded"
+            >
+              Login
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Right Section */}
+      <div className="flex space-x-4">
+        <button
+          onClick={() => navigate('/home2/leaderboard')}
+          className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded"
+        >
+          Leaderboard
+        </button>
+        <button
+          onClick={() => navigate('/home2/feed')}
+          className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded"
+        >
+          Feed
+        </button>
+        <button
+          onClick={() => navigate('/home2/profile')}
+          className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded"
+        >
+          Profile
+        </button>
+        <button
+          onClick={() => navigate('/home2/takeTrade')}
+          className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded"
+        >
+          Take Trade
+        </button>
+      </div>
     </nav>
   );
 };

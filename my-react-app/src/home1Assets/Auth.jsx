@@ -47,55 +47,87 @@ const Signup = () => {
    
   return (
 
-    <div>
-      <button onClick={()=>{navigate('/')}}>back</button>
-    <h2>{isSignup ? 'Signup' : 'Login'}</h2>
-    <form onSubmit={handleSubmit}>
-    {isSignup && (<>
-      <input
+    <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center space-y-6">
+  {/* Back Button */}
+  <button
+    onClick={() => {
+      navigate('/');
+    }}
+    className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded"
+  >
+    Back
+  </button>
+
+  {/* Form Title */}
+  <h2 className="text-2xl font-bold">{isSignup ? 'Signup' : 'Login'}</h2>
+
+  {/* Form */}
+  <form
+    onSubmit={handleSubmit}
+    className="bg-gray-800 p-6 rounded shadow-md space-y-4 w-80"
+  >
+    {isSignup && (
+      <>
+        <input
           type="text"
           placeholder="First Name"
-          name='firstName'
+          name="firstName"
           onChange={handleChange}
+          className="w-full px-4 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="text"
           placeholder="Last Name"
-          name='lastName'
+          name="lastName"
           onChange={handleChange}
+          className="w-full px-4 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-    </>)}
+      </>
+    )}
     <input
-          type="text"
-          placeholder="Email"
-          name='email'  
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder="Password"
-          name='password'
-          onChange={handleChange}
-        />
-      {isSignup &&
-      (<input
       type="text"
-      placeholder="Confirm Password"
-      name='confirmPassword'
+      placeholder="Email"
+      name="email"
       onChange={handleChange}
-    />)}
-   
-    <button type ="submit" onClick={handleSubmit}>{isSignup ? 'Signup' : 'Login'}</button>
-    </form>
-    <GoogleLogin
-      clientId= {clientID}
-      onSuccess={handleGoogleLogin}
-      onFailure={handleGoogleLoginFailure}
-      
+      className="w-full px-4 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
     />
-    <button onClick ={switchMode}> {isSignup? 'Already have an account? Signin': 'Don\'t have an account? Signup'}</button>
-    <p></p>
-    </div>
+    <input
+      type="password"
+      placeholder="Password"
+      name="password"
+      onChange={handleChange}
+      className="w-full px-4 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    {isSignup && (
+      <input
+        type="password"
+        placeholder="Confirm Password"
+        name="confirmPassword"
+        onChange={handleChange}
+        className="w-full px-4 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    )}
+
+    <button
+      type="submit"
+      onClick={handleSubmit}
+      className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded font-bold"
+    >
+      {isSignup ? 'Signup' : 'Login'}
+    </button>
+  </form>
+
+  {/* Toggle Between Login/Signup */}
+  <button
+    onClick={switchMode}
+    className="text-blue-400 hover:underline"
+  >
+    {isSignup
+      ? 'Already have an account? Sign in'
+      : "Don't have an account? Sign up"}
+  </button>
+</div>
+
   )
 }
 export default Signup
